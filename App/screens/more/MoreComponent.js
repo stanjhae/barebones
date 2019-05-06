@@ -6,8 +6,8 @@ export const MoreComponent = props => {
   const { navigation } = props;
   return (
     <View>
+      <Button title="View Profile" onPress={() => navigation.navigate('ProfileScreen')} />
       <Button title="Logout" onPress={() => navigation.navigate('AuthNavigator')} />
-      <Button title="Profile" onPress={() => navigation.navigate('ProfileScreen')} />
     </View>
   );
 };

@@ -1,12 +1,20 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import ProfileStyles from './ProfileStyles';
+import { ProfileNameAndImageView } from './ProfileHelperComponents';
 
-export const ProfileComponent = props => {
+const ProfileComponent = props => {
   const { navigation } = props;
-  return <Button title="Edit profile" onPress={() => navigation.navigate('EditProfileScreen')} />;
+  return (
+    <View style={ProfileStyles.container}>
+      <ProfileNameAndImageView />
+    </View>
+  );
 };
 
 ProfileComponent.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
+
+export default ProfileComponent;

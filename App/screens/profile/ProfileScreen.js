@@ -1,9 +1,9 @@
 import React from 'react';
-import { ProfileComponent } from './ProfileComponent';
+import ProfileComponent from './ProfileComponent';
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
-    title: 'Profile'
+    title: ''
   };
 
   render() {

@@ -3,6 +3,7 @@ import HomeScreen from '../screens/home/HomeScreen';
 import MoreScreen from '../screens/more/MoreScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import EditProfileScreen from '../screens/editprofile/EditProfileScreen';
+import NewItemScreen from '../screens/newItem/NewItemScreen';
 
 const HomeScreenStack = createStackNavigator({
   HomeScreen,
@@ -14,7 +15,6 @@ HomeScreenStack.navigationOptions = {
 
 const MoreScreenStack = createStackNavigator({
   MoreScreen,
-  ProfileScreen,
 });
 
 MoreScreenStack.navigationOptions = {
@@ -30,7 +30,21 @@ MainBottomTabNavigation.navigationOptions = {
   header: null,
 };
 
-export default createStackNavigator({
+const MainStack = createStackNavigator({
   MainBottomTabNavigation,
   EditProfileScreen,
+  ProfileScreen,
 });
+
+const MainRootStack = createStackNavigator(
+  {
+    MainStack,
+    NewItemScreen,
+  },
+  {
+    headerMode: 'none',
+    mode: 'modal',
+  }
+);
+
+export default MainRootStack;
