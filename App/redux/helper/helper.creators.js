@@ -36,6 +36,8 @@ export const countryPicker = value => ({
   type: types.COUNTRY_PICKER, payload: value,
 });
 
+export const toggleFlashMessage = () => ({ type: types.TOGGLE_FLASH_MESSAGE });
+
 export const toggleLoading = (message, status) => ({ type: types.TOGGLE_LOADER, payload: { message, status } });
 
 // export function getAsyncStorageSuccess(item, value) {

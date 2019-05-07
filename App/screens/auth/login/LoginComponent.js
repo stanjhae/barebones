@@ -14,8 +14,7 @@ const LoginComponent = (props) => {
       // validationSchema={firstNewItemSchema}
       enableReinitialize={true}
       isInitialValid={true}
-      onSubmit={values => login(values, navigation)}
-    >
+      onSubmit={values => login(values, navigation)}>
       {({
         handleChange, handleSubmit, values,
       }) => (
@@ -27,7 +26,6 @@ const LoginComponent = (props) => {
             onPress={() => navigation.navigate('ForgotPasswordScreen')}
           />
           <Button title="Log In" onPress={handleSubmit} />
-          <Button title="Home" onPress={() => navigation.navigate('MainNavigator')} />
         </AuthWrapper>
       )}
     </Formik>

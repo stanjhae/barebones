@@ -14,18 +14,16 @@ const SignUpComponent = (props) => {
       // validationSchema={firstNewItemSchema}
       enableReinitialize={true}
       isInitialValid={true}
-      onSubmit={values => signUp(values, navigation)}
-    >
+      onSubmit={values => signUp(values, navigation)}>
       {({
         handleChange, handleSubmit, values,
       }) => (
         <AuthWrapper>
-          <TextInput textContentType="givenName" autoCapitalize="words" keyboardType="default" label="firstName" value={values.firstName} onChange={handleChange('firstName')}/>
-          <TextInput textContentType="familyName" autoCapitalize="words" keyboardType="default" label="lastName" value={values.lastName} onChange={handleChange('lastName')}/>
+          <TextInput textContentType="name" autoCapitalize="words" keyboardType="default" label="First Name" value={values.firstName} onChange={handleChange('firstName')}/>
+          <TextInput textContentType="name" autoCapitalize="words" keyboardType="default" label="Last Name" value={values.lastName} onChange={handleChange('lastName')}/>
           <TextInput keyboardType="email-address" textContentType="emailAddress" label="Email" value={values.email} onChange={handleChange('email')}/>
           <TextInput secureTextEntry keyboardType="email-address" textContentType="password" label="Password" value={values.password} onChange={handleChange('password')}/>
           <Button title="Sign Up" onPress={handleSubmit} />
-          <Button title="Home" onPress={() => navigation.navigate('MainNavigator')} />
         </AuthWrapper>
       )}
     </Formik>

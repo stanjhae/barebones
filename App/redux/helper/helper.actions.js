@@ -77,3 +77,10 @@ export const resetFilter = () => (dispatch) => {
   dispatch(actions.sendDispatch({ type: 'RESET_FILTER', payload: {} }));
   dispatch(noTripData());
 };
+
+export const hideFlashMessage = () => dispatch => (dispatch(actions.toggleFlashMessage()));
+
+export const toggleFlashMessage = () => (dispatch) => {
+  dispatch(actions.toggleFlashMessage());
+  setTimeout(() => dispatch(actions.toggleFlashMessage()), 3000);
+};

@@ -99,6 +99,13 @@ export default function helperReducer(state = initialState, action) {
       };
     }
 
+    case types.TOGGLE_FLASH_MESSAGE: {
+      return {
+        ...state,
+        flashBarVisible: !state.flashBarVisible,
+      };
+    }
+
     default:
       return state;
   }
