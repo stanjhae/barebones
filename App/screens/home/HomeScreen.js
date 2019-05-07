@@ -3,7 +3,7 @@ import { HomeComponent } from './HomeComponent';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: "Home",
+    title: 'Home',
   };
 
   render() {

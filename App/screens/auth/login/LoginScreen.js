@@ -1,12 +1,19 @@
 import React from 'react';
-import { LoginComponent } from './LoginComponent';
+import { connect } from 'react-redux';
+import LoginComponent from './LoginComponent';
 
-export default class LoginScreen extends React.Component {
+class LoginScreen extends React.Component {
   static navigationOptions = {
-    title: "Log In",
+    title: 'Log In',
   };
 
   render() {
     return <LoginComponent {...this.props} />;
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user.user,
+});
+
+export default connect(mapStateToProps)(LoginScreen);

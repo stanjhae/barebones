@@ -44,7 +44,7 @@ const MainRootStack = createStackNavigator(
   {
     headerMode: 'none',
     mode: 'modal',
-  }
+  },
 );
 
 export default MainRootStack;

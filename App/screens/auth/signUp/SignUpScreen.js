@@ -3,7 +3,7 @@ import SignUpComponent from './SignUpComponent';
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = {
-    title: "Sign Up",
+    title: 'Sign Up',
   };
 
   render() {

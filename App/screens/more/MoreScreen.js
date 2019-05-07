@@ -3,7 +3,7 @@ import { MoreComponent } from './MoreComponent';
 
 export default class MoreScreen extends React.Component {
   static navigationOptions = {
-    title: "More",
+    title: 'More',
   };
 
   render() {

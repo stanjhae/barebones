@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import PropTypes from 'prop-types';
 
-export const MoreComponent = props => {
+export const MoreComponent = (props) => {
   const { navigation } = props;
   return (
     <View>

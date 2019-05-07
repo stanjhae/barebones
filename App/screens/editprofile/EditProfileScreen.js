@@ -1,12 +1,20 @@
 import React from 'react';
-import { EditProfileComponent } from "./EditProfileComponent";
+import { connect } from 'react-redux';
+import EditProfileComponent from './EditProfileComponent';
 
-export default class EditProfileScreen extends React.Component {
+class EditProfileScreen extends React.Component {
   static navigationOptions = {
-    title: "Edit Profile",
+    title: 'Edit Profile',
   };
 
   render() {
-    return <EditProfileComponent />;
+    console.log(this.props);
+    return <EditProfileComponent {...this.props}/>;
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.helper.asyncStorage.user,
+});
+
+export default connect(mapStateToProps)(EditProfileScreen);

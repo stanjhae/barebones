@@ -3,7 +3,7 @@ import { ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import AuthWrapperStyles from './AuthWrapperStyles';
 
-const AuthWrapper = props => {
+const AuthWrapper = (props) => {
   const { children } = props;
   return (
     <KeyboardAvoidingView

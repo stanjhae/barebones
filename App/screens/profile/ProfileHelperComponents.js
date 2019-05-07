@@ -1,15 +1,22 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Text, Image } from 'react-native'
-import ProfileStyles from "./ProfileStyles";
-import { myImage } from "../../constants/Layout";
+import { View, Text } from 'react-native';
+import ProfileStyles from './ProfileStyles';
+// import url from '../../constants/url';
 
-export const ProfileNameAndImageView = props => {
-  return (
+const ProfileNameAndImageView = props => (
     <View style={ProfileStyles.profileNameAndPictureViewContainer}>
       <View style={ProfileStyles.profilePictureContainer}>
-        <Image source={{uri: myImage}} style={ProfileStyles.profilePictureView} />
+        {/* <Image source={{ uri: `${url}/image/${props.avatar}` }} style={ProfileStyles.profilePictureView} /> */}
       </View>
-      <Text style={ProfileStyles.name}>Woyong</Text>
+      <Text style={ProfileStyles.name}>{props.firstName} {props.lastName}</Text>
     </View>
-  );
+);
+
+export default ProfileNameAndImageView;
+
+ProfileNameAndImageView.propTypes = {
+  avatar: PropTypes.any,
+  firstName: PropTypes.any,
+  lastName: PropTypes.any,
 };

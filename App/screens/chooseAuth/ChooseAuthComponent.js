@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
-const ChooseAuthComponent = props => {
+const ChooseAuthComponent = (props) => {
   const { navigation } = props;
   return (
     <>

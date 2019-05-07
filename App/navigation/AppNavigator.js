@@ -8,5 +8,5 @@ export default createAppContainer(
     SplashScreen,
     AuthNavigator,
     MainNavigator,
-  })
+  }),
 );

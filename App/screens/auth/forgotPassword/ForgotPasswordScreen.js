@@ -1,10 +1,10 @@
 import React from 'react';
 import ForgotPasswordComponent from './ForgotPasswordComponent';
-import AuthWrapper from "../../../utils/authWrapper/AuthWrapper";
+import AuthWrapper from '../../../utils/authWrapper/AuthWrapper';
 
 export default class ForgotPasswordScreen extends React.Component {
   static navigationOptions = {
-    title: "Forgot Password",
+    title: 'Forgot Password',
   };
 
   render() {
@@ -12,6 +12,6 @@ export default class ForgotPasswordScreen extends React.Component {
       <AuthWrapper>
         <ForgotPasswordComponent {...this.props} />
       </AuthWrapper>
-    )
+    );
   }
 }

@@ -1,0 +1,36 @@
+export default {
+  isLoading: false,
+  isTripLoading: false,
+  isRefreshing: false,
+  loaded: false,
+  success: false,
+  offset: 0,
+  savedOffset: 0,
+  filter: false,
+  myTrips: [],
+  myActiveTrips: [],
+  trips: [],
+  searchTrips: [],
+  trip: {
+    trip: {
+      user: {
+        ratings: {
+          courier: 0,
+          courierCount: 0,
+        },
+      },
+      location: { longitude: 0, latitude: 0 },
+      price: 0,
+      // "initDate": new Date(),
+      category: [],
+      images: [],
+      appointment: {},
+      size: 0,
+      items: [],
+      savedBy: [],
+    },
+    conversations: [],
+    couriers: [],
+    itemOrder: {},
+  },
+};
