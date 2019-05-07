@@ -23,12 +23,12 @@ class messageApi {
       .catch(error => error);
   }
 
-  // static editMyTrip(trip) {
+  // static editMyTrip(store) {
   //   return axios({
   //     method: 'put',
-  //     url: `${url}/messages/${trip._id}`,
+  //     url: `${url}/messages/${store._id}`,
   //     timeout: 5 * 1000,
-  //     data: trip
+  //     data: store
   //   })
   //     .then(function ({data}) {
   //       return {success: true, data};
@@ -38,10 +38,10 @@ class messageApi {
   //     })
   // }
   //
-  // static deleteTrip(trip) {
+  // static deleteTrip(store) {
   //   return axios({
   //     method: 'put',
-  //     url: `${url}/messages/delete/${trip}`,
+  //     url: `${url}/messages/delete/${store}`,
   //     timeout: 5 * 1000,
   //   })
   //     .then(function ({data}) {

@@ -20,27 +20,9 @@ const TextInput = (props) => {
   );
 };
 
-TextInput.defaultProps = {
-  autoCapitalize: 'none',
-  autoCorrect: false,
-  clearButtonMode: 'always',
-  keyboardAppearance: 'default',
-  keyboardType: 'default',
-  maxLength: null,
-  secureTextEntry: false,
-  value: '',
+TextInput.propTypes = {
+  label: PropTypes.any,
+  onChange: PropTypes.any,
 };
 
 export default TextInput;
-
-TextInput.propTypes = {
-  autoCapitalize: PropTypes.string,
-  autoCorrect: PropTypes.bool,
-  clearButtonMode: PropTypes.string,
-  keyboardAppearance: PropTypes.string,
-  keyboardType: PropTypes.string,
-  label: PropTypes.any,
-  maxLength: PropTypes.any,
-  onChange: PropTypes.any,
-  secureTextEntry: PropTypes.bool,
-};

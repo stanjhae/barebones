@@ -1,24 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, FlatList, Button } from 'react-native';
+import { getItem, resetItem } from '../../utils/actions/item.util';
 
 class HomeComponent extends React.Component {
-  state = {
-    data: [
-      { name: 'woyong', age: '21' },
-      { name: 'Chioma', age: '20' }],
-  };
-
   renderItems = ({ item }) => (
       <Button
         title={item.name}
-        onPress={() => this.props.navigation.navigate('ItemDetailsScreen')}/>
+        onPress={() => getItem(item._id, this.props.navigation, 'ItemDetailsScreen', `Getting ${item.name}...`)}/>
   );
 
   render() {
-    const { navigation } = this.props;
-    const { data } = this.state;
-
+    const { navigation, items } = this.props;
     return (
       <View style={{
         flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',
@@ -26,9 +19,9 @@ class HomeComponent extends React.Component {
 
         <FlatList
           keyExtractor={item => `${item.name}`}
-          renderItem={this.renderItems} data={data} />
+          renderItem={this.renderItems} data={items} />
 
-        <Button title='Add Item' onPress={() => navigation.navigate('NewItemScreen')}/>
+        <Button title='Add Item' onPress={() => resetItem(navigation)}/>
         <Button title='New Store' onPress={() => navigation.navigate('NewStoreScreen')}/>
 
       </View>
@@ -37,6 +30,7 @@ class HomeComponent extends React.Component {
 }
 
 HomeComponent.propTypes = {
+  items: PropTypes.any,
   navigation: PropTypes.object.isRequired,
 };
 

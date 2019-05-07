@@ -36,7 +36,7 @@ export const countryPicker = value => ({
   type: types.COUNTRY_PICKER, payload: value,
 });
 
-export const toggleFlashMessage = () => ({ type: types.TOGGLE_FLASH_MESSAGE });
+export const toggleFlashMessage = (flashErr, flashType, status) => ({ type: types.TOGGLE_FLASH_MESSAGE, payload: { flashErr, flashType, status } });
 
 export const toggleLoading = (message, status) => ({ type: types.TOGGLE_LOADER, payload: { message, status } });
 

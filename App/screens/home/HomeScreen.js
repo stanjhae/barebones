@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import HomeComponent from './HomeComponent';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
   };
@@ -10,3 +11,9 @@ export default class HomeScreen extends React.Component {
     return <HomeComponent {...this.props} />;
   }
 }
+
+const mapStateToProps = state => ({
+  items: state.item.myItems,
+});
+
+export default connect(mapStateToProps)(HomeScreen);

@@ -4,21 +4,24 @@ import { setAsyncStorage } from '../helper/helper.actions';
 import { createUserSuccess } from '../user/user.creators';
 import { toggleLoading } from '../helper/helper.creators';
 
-export const getItems = offset => async (dispatch) => {
-  const result = await itemApi.getItems(offset);
-  if (result.data.result.length > 0) {
-    dispatch(actions.getItemsSuccess(result.data));
+export const getItems = () => async (dispatch) => {
+  dispatch(toggleLoading('Gathering the items', true));
+  const result = await itemApi.getItems(0);
+  if (result.result.length > 0) {
+    dispatch(actions.getItemsSuccess(result));
   }
+  dispatch(toggleLoading('', false));
 };
 
 export const newItem = item => async (dispatch) => {
-  dispatch(actions.startLoading());
+  dispatch(toggleLoading('Creating your item', true));
   const result = await itemApi.newItem(item);
   if (!result.success) {
-    dispatch(actions.stopLoading());
+    dispatch(toggleLoading('', false));
     return false;
   }
-  dispatch(actions.createItemSuccess(result.data));
+  dispatch(toggleLoading('', false));
+  dispatch(actions.createItemSuccess(result.result));
   return true;
 };
 
@@ -26,10 +29,11 @@ export const getItem = (item, loader) => async (dispatch) => {
   dispatch(toggleLoading(loader, true));
   const result = await itemApi.getItem(item);
   if (!result.success) {
+    dispatch(toggleLoading('', false));
     return false;
   }
-  dispatch(actions.getItemSuccess(result.data));
-  dispatch(toggleLoading(loader, false));
+  dispatch(actions.getItemSuccess(result));
+  dispatch(toggleLoading('', false));
   return true;
 };
 
@@ -71,17 +75,13 @@ export function filterItems(query) {
   };
 }
 
-export const getMyItems = (user, offset, status, type) => async (dispatch) => {
-  const result = await itemApi.getMyItems(user, offset, status);
+export const getMyItems = user => async (dispatch) => {
+  dispatch(toggleLoading('Getting your items', true));
+  const result = await itemApi.getMyItems(user);
   if (result.success) {
-    if (result.data.result.length > 0) {
-      if (type === 'all') {
-        dispatch(actions.getMyItemsSuccess(result.data, offset));
-      } else {
-        dispatch(actions.getMyActiveItemsSuccess(result.data, offset));
-      }
-    } else dispatch(actions.noItemData());
+    dispatch(actions.getMyItemsSuccess(result));
   }
+  dispatch(toggleLoading('', false));
 };
 
 export const editMyItem = item => async (dispatch) => {
@@ -91,13 +91,13 @@ export const editMyItem = item => async (dispatch) => {
     dispatch(toggleLoading('', false));
     return false;
   }
-  dispatch(actions.getItemSuccess(result.data));
+  dispatch(actions.getItemSuccess(result));
   dispatch(toggleLoading('', false));
   return true;
 };
 
-export const resetItemSuccess = item => async (dispatch) => {
-  dispatch(actions.getItemSuccess(item));
+export const resetItem = () => async (dispatch) => {
+  dispatch(actions.resetItemSuccess());
 };
 
 export const saveItem = (user, item) => async (dispatch) => {

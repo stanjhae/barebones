@@ -12,7 +12,7 @@ import FlashBarStyles from './FlashBarStyles';
 import Icons from '../../constants/Icons';
 import TouchableOpacity from '../TouchableOpacity';
 import { store } from '../../redux/store';
-import { hideFlashMessage } from '../../redux/helper/helper.actions';
+import { toggleFlashMessage } from '../../redux/helper/helper.creators';
 
 const FlashBar = (props) => {
   const { message, type } = props;
@@ -24,7 +24,7 @@ const FlashBar = (props) => {
         <View style={FlashBarStyles.errorMessageContainer}>
           <Text style={FlashBarStyles.fontStyle}>{message}</Text>
         </View>
-        <TouchableOpacity onPress={() => store.dispatch(hideFlashMessage())} style={FlashBarStyles.iconView}>
+        <TouchableOpacity onPress={() => store.dispatch(toggleFlashMessage('', '', false))} style={FlashBarStyles.iconView}>
           <Image style={{ height: 16, width: 16 }} source={Icons.whiteCancelButton} />
         </TouchableOpacity>
       </AnimatableView>

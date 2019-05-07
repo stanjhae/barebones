@@ -8,7 +8,7 @@ class itemApi {
       url: `${url}/items/${offset}`,
       timeout: 5 * 1000,
     })
-      .then(({ data }) => ({ success: true, data }))
+      .then(({ data }) => data)
       .catch(error => error);
   }
 
@@ -39,9 +39,9 @@ class itemApi {
       if (key === 'category') formData.append(key, JSON.stringify(value));
       else formData.append(key, value);
     }
-    if (item.picture) {
+    if (item.image) {
       formData.append('image', {
-        uri: item.picture, // your file path string
+        uri: item.image, // your file path string
         name: 'my_photo.jpg',
         type: 'image/jpg',
       });
@@ -53,7 +53,7 @@ class itemApi {
       data: formData,
       headers: { Accept: 'application/json', 'Content-Type': 'multipart/form-data' },
     })
-      .then(({ data }) => ({ success: true, data }))
+      .then(({ data }) => data)
       .catch(error => error);
   }
 
@@ -63,17 +63,17 @@ class itemApi {
       url: `${url}/items/item/${item}`,
       timeout: 5 * 1000,
     })
-      .then(({ data }) => ({ success: true, data }))
+      .then(({ data }) => data)
       .catch(error => error);
   }
 
-  static getMyItems(user, offset, status) {
+  static getMyItems(user) {
     return axios({
       method: 'get',
-      url: `${url}/items/myItems/${user}/${offset}/${status}`,
+      url: `${url}/items/myItems/${user}`,
       timeout: 5 * 1000,
     })
-      .then(({ data }) => ({ success: true, data }))
+      .then(({ data }) => data)
       .catch(error => error);
   }
 
@@ -98,7 +98,7 @@ class itemApi {
       data: formData,
       headers: { Accept: 'application/json', 'Content-Type': 'multipart/form-data' },
     })
-      .then(({ data }) => ({ success: true, data }))
+      .then(({ data }) => data)
       .catch(error => error);
   }
 

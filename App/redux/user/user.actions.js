@@ -1,7 +1,7 @@
 import * as actions from './user.creators';
 import userApi from '../../utils/api/userApi';
 import { setAsyncStorage, mergeAsyncStorage } from '../helper/helper.actions';
-import { toggleLoading } from '../helper/helper.creators';
+import { toggleLoading, toggleFlashMessage } from '../helper/helper.creators';
 
 export const getUser = user => async (dispatch) => {
   dispatch(actions.stopLoading());
@@ -23,24 +23,14 @@ export const loginUser = user => async (dispatch) => {
   const result = await userApi.signInUser(user);
   if (!result.success) {
     dispatch(toggleLoading('', false));
+    dispatch(toggleFlashMessage('Username or password incorrect', 'error', true));
+    setTimeout(() => dispatch(toggleFlashMessage('', '', false)), 3000);
     return false;
   }
   dispatch(setAsyncStorage('user', result.result));
   dispatch(actions.createUserSuccess(result.result));
   dispatch(toggleLoading('', false));
   return true;
-};
-
-export const stopLoading = () => (dispatch) => {
-  dispatch(actions.stopLoading());
-};
-
-export const toggleModal = () => (dispatch) => {
-  dispatch(actions.toggleModal());
-};
-
-export const toggleStatusBar = () => (dispatch) => {
-  dispatch(actions.toggleStatusBar());
 };
 
 
@@ -82,19 +72,6 @@ export const sendToken = email => async () => {
   return result.success;
 };
 
-export function addBank(bank) {
-  return function (dispatch) {
-    return userApi.addBank(bank).then((res) => {
-      if (!res.success) {
-        return { success: false, message: 'There is something wrong with your bank account' };
-      }
-      dispatch(setAsyncStorage('user', res.response.data.result));
-      dispatch(actions.updateUserSuccess(res.response.data));
-      return { success: true, message: 'Bank Account added' };
-    });
-  };
-}
-
 export const verifyToken = (email, token) => async (dispatch) => {
   const result = await userApi.verifyToken(email, token);
   if (!result.success) {
@@ -103,33 +80,3 @@ export const verifyToken = (email, token) => async (dispatch) => {
   dispatch(mergeAsyncStorage('user', result.response.data.result));
   return true;
 };
-
-export const verifyBVN = (user, bvn) => async (dispatch) => {
-  dispatch(actions.startLoading());
-  const result = await userApi.verifyBVN(user, bvn);
-  if (!result.success) {
-    dispatch(actions.userFailure());
-    setTimeout(() => {
-      dispatch(actions.stopLoading());
-    }, 1000);
-    return false;
-  }
-  dispatch(mergeAsyncStorage('user', result.response.data.result));
-  dispatch(actions.userSuccess());
-  setTimeout(() => {
-    dispatch(actions.stopLoading());
-  }, 1000);
-  return true;
-};
-
-export function makePayment() {
-  return function (dispatch) {
-    return userApi.makePayment().then((res) => {
-      if (!res.success) {
-        return { success: false, message: 'BVN Incorrect' };
-      }
-      dispatch(mergeAsyncStorage('user', res.response.data.result));
-      return { success: true, message: 'BVN Verified' };
-    });
-  };
-}

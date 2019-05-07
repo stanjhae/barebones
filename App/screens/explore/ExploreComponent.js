@@ -1,22 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, FlatList, View } from 'react-native';
+import {
+  getItem,
+} from '../../utils/actions/item.util';
 
 
 class ExploreComponent extends React.Component {
-  state = {
-    data: [
-      { name: 'Doris', age: '20' },
-      { name: 'Aisha', age: '18' }],
-  };
-
   renderItems = ({ item }) => (
     <Button
       title={item.name}
-      onPress={() => this.props.navigation.navigate('ExploreDetailsScreen')}/>
+      onPress={() => getItem(item._id, this.props.navigation, 'ExploreDetailsScreen', `Getting ${item.name}...`)}/>
   );
 
   render() {
-    const { data } = this.state;
+    const { items } = this.props;
     return (
       <View style={{
         flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center',
@@ -24,10 +22,16 @@ class ExploreComponent extends React.Component {
 
         <FlatList
           keyExtractor={item => `${item.name}`}
-          renderItem={this.renderItems} data={data} />
+          renderItem={this.renderItems} data={items} />
+
       </View>
     );
   }
 }
 
 export default ExploreComponent;
+
+ExploreComponent.propTypes = {
+  items: PropTypes.any,
+  navigation: PropTypes.any,
+};

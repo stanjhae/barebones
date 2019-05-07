@@ -5,12 +5,11 @@ export default function itemReducer(state = initialState, action) {
   switch (action.type) {
     case types.CREATE_ITEM_SUCCESS: {
       const newArray = state.myItems.slice();
-      newArray.splice(0, 0, action.payload.item);
+      newArray.splice(0, 0, action.payload);
       return {
         ...state,
         item: action.payload,
         myItems: newArray,
-        isLoading: false,
       };
     }
     case types.UPDATE_ITEM_SUCCESS: {
@@ -22,7 +21,7 @@ export default function itemReducer(state = initialState, action) {
     case types.GET_ITEMS_SUCCESS: {
       return {
         ...state,
-        items: [...state.items, ...action.payload.items],
+        items: [...state.items, ...action.payload],
       };
     }
     case types.SEARCH_ITEMS_SUCCESS: {
@@ -47,9 +46,7 @@ export default function itemReducer(state = initialState, action) {
     case types.GET_MY_ITEMS_SUCCESS: {
       return {
         ...state,
-        isLoading: false,
-        offset: action.payload.offset + 10,
-        myItems: [...state.myItems, ...action.payload.items],
+        myItems: [...state.myItems, ...action.payload],
       };
     }
     case types.GET_MY_ACTIVE_ITEMS_SUCCESS: {
@@ -63,26 +60,20 @@ export default function itemReducer(state = initialState, action) {
         ...state,
         item: action.payload,
         myItems: state.myItems.map((item) => {
-          if (item._id !== action.payload.item._id) {
+          if (item._id !== action.payload._id) {
             return item;
           }
           return {
             ...item,
-            ...action.payload.item,
+            ...action.payload,
           };
         }),
       };
     }
-    case types.UPDATE_ITEM_ATTR_SUCCESS: {
+    case types.RESET_ITEM_SUCCESS: {
       return {
         ...state,
-        item: {
-          ...state.item,
-          item: {
-            ...state.item.item,
-            [action.payload.item]: action.payload.value,
-          },
-        },
+        item: initialState.item,
       };
     }
     case types.DELETE_ITEM_SUCCESS: {

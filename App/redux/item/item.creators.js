@@ -1,8 +1,10 @@
 import * as types from './item.types';
 
-export const createItemSuccess = item => ({ type: item.message, payload: item.result });
+export const createItemSuccess = item => ({ type: types.CREATE_ITEM_SUCCESS, payload: item });
 
 export const getItemSuccess = item => ({ type: item.message, payload: item.result });
+
+export const resetItemSuccess = () => ({ type: types.RESET_ITEM_SUCCESS });
 
 export const updateItemSuccess = item => ({ type: item.message, payload: item.result });
 
@@ -12,9 +14,9 @@ export const deleteItemSuccess = (message, item) => ({ type: message, payload: i
 
 // export const saveItemSuccess = (message, item) => ({ type: message, payload: item });
 
-export const getItemsSuccess = (items, offset) => ({ type: items.message, payload: { items: items.result, offset } });
+export const getItemsSuccess = items => ({ type: items.message, payload: items.result });
 
-export const getMyItemsSuccess = (items, offset) => ({ type: items.message, payload: { items: items.result, offset } });
+export const getMyItemsSuccess = items => ({ type: items.message, payload: items.result });
 
 export const getMyActiveItemsSuccess = (items, offset) => ({ type: types.GET_MY_ACTIVE_ITEMS_SUCCESS, payload: { items: items.result, offset } });
 

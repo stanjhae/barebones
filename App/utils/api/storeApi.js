@@ -1,83 +1,83 @@
 import axios from 'axios';
 import url from '../../constants/url';
 
-class tripApi {
-  static getTrips(offset) {
+class storeApi {
+  static getStores(offset) {
     return axios({
       method: 'get',
-      url: `${url}/trips/${offset}`,
+      url: `${url}/stores/${offset}`,
+      timeout: 5 * 1000,
+    })
+      .then(({ data }) => data)
+      .catch(error => error);
+  }
+
+  static searchStores(query, offset) {
+    return axios({
+      method: 'get',
+      url: `${url}/stores/search/${query}/${offset}`,
       timeout: 5 * 1000,
     })
       .then(({ data }) => ({ success: true, data }))
       .catch(error => error);
   }
 
-  static searchTrips(query, offset) {
+  static filterStores(query) {
     return axios({
       method: 'get',
-      url: `${url}/trips/search/${query}/${offset}`,
+      url: `${url}/stores/filter/${JSON.stringify(query)}`,
       timeout: 5 * 1000,
     })
       .then(({ data }) => ({ success: true, data }))
       .catch(error => error);
   }
 
-  static filterTrips(query) {
-    return axios({
-      method: 'get',
-      url: `${url}/trips/filter/${JSON.stringify(query)}`,
-      timeout: 5 * 1000,
-    })
-      .then(({ data }) => ({ success: true, data }))
-      .catch(error => error);
-  }
-
-  static newTrip(trip) {
+  static newStore(store) {
     return axios({
       method: 'post',
-      url: `${url}/trips/new`,
+      url: `${url}/stores/new`,
       timeout: 5 * 1000,
-      data: trip,
+      data: store,
     })
-      .then(({ data }) => ({ success: true, data }))
+      .then(({ data }) => data)
       .catch(error => error);
   }
 
-  static getTrip(trip) {
+  static getStore(store) {
     return axios({
       method: 'get',
-      url: `${url}/trips/trip/${trip}`,
+      url: `${url}/stores/store/${store}`,
       timeout: 5 * 1000,
     })
       .then(({ data }) => ({ success: true, data }))
       .catch(error => error);
   }
 
-  static getMyTrips(user, offset, status) {
+  static getMyStores(user, offset, status) {
     return axios({
       method: 'get',
-      url: `${url}/trips/myTrips/${user}/${offset}/${status}`,
+      url: `${url}/stores/myStores/${user}/${offset}/${status}`,
       timeout: 5 * 1000,
     })
       .then(({ data }) => ({ success: true, data }))
       .catch(error => error);
   }
 
-  static editMyTrip(trip) {
+  static editMyStore(store) {
     return axios({
       method: 'put',
-      url: `${url}/trips/${trip._id}`,
+      url: `${url}/stores/${store._id}`,
       timeout: 5 * 1000,
-      data: trip,
+      data: store,
     })
       .then(({ data }) => ({ success: true, data }))
       .catch(error => error);
   }
 
-  // static deleteTrip(trip) {
+  // static deleteStore(store) {
   //   return axios({
   //     method: 'put',
-  //     url: `${url}/trips/delete/${trip}`,
+  //     url: `${url}/stores/delete/${store}`,
   //     timeout: 5 * 1000,
   //   })
   //     .then(function ({data}) {
@@ -87,10 +87,10 @@ class tripApi {
   //       return error
   //     })
   // }
-  static saveTrip(user, trip) {
+  static saveStore(user, store) {
     return axios({
       method: 'put',
-      url: `${url}/trips/save/${trip}`,
+      url: `${url}/stores/save/${store}`,
       timeout: 5 * 1000,
       data: { user },
     })
@@ -98,10 +98,10 @@ class tripApi {
       .catch(error => error);
   }
 
-  static deleteSavedTrip(user, trip) {
+  static deleteSavedStore(user, store) {
     return axios({
       method: 'put',
-      url: `${url}/trips/deleteSave/${trip}`,
+      url: `${url}/stores/deleteSave/${store}`,
       timeout: 5 * 1000,
       data: { user },
     })
@@ -109,20 +109,20 @@ class tripApi {
       .catch(error => error);
   }
 
-  static getLatestTrips(lastTrip) {
+  static getLatestStores(lastStore) {
     return axios({
       method: 'get',
-      url: `${url}/trips/latest/${lastTrip}`,
+      url: `${url}/stores/latest/${lastStore}`,
       timeout: 5 * 1000,
     })
       .then(({ data }) => ({ success: true, data }))
       .catch(error => error);
   }
 
-  static deleteTrip(trip) {
+  static deleteStore(store) {
     return axios({
       method: 'put',
-      url: `${url}/trips/delete/${trip}`,
+      url: `${url}/stores/delete/${store}`,
       timeout: 5 * 1000,
     })
       .then(({ data }) => ({ success: true, data }))
@@ -130,4 +130,4 @@ class tripApi {
   }
 }
 
-export default tripApi;
+export default storeApi;

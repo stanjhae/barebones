@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { noTripData } from '../trip/trip.creators';
+import { noTripData } from '../store/store.creators';
 import { updateItemAttrSuccess } from '../item/item.creators';
 import * as actions from './helper.creators';
 import helperApi from '../../utils/api/helperApi';
@@ -76,11 +76,4 @@ export const resetState = () => dispatch => dispatch(actions.sendDispatch({ type
 export const resetFilter = () => (dispatch) => {
   dispatch(actions.sendDispatch({ type: 'RESET_FILTER', payload: {} }));
   dispatch(noTripData());
-};
-
-export const hideFlashMessage = () => dispatch => (dispatch(actions.toggleFlashMessage()));
-
-export const toggleFlashMessage = () => (dispatch) => {
-  dispatch(actions.toggleFlashMessage());
-  setTimeout(() => dispatch(actions.toggleFlashMessage()), 3000);
 };

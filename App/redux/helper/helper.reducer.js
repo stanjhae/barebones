@@ -102,7 +102,9 @@ export default function helperReducer(state = initialState, action) {
     case types.TOGGLE_FLASH_MESSAGE: {
       return {
         ...state,
-        flashBarVisible: !state.flashBarVisible,
+        flashBarVisible: action.payload.status,
+        flashErr: action.payload.flashErr,
+        flashType: action.payload.flashType,
       };
     }
 

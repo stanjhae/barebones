@@ -1,12 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import EditItemComponent from './EditItemComponent';
 
 class EditItemScreen extends React.Component {
   render() {
     return (
-      <EditItemComponent/>
+      <EditItemComponent {...this.props}/>
     );
   }
 }
 
-export default EditItemScreen;
+const mapStateToProps = state => ({
+  item: state.item.item,
+});
+
+export default connect(mapStateToProps)(EditItemScreen);
